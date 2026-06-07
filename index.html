@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCash</title>
+    <link rel="shortcut icon" href="img/smartcash-logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <img src="img/smartcash-logo.svg" alt="Logotipo SmartCash">
+        <h1>SmartCash</h1>
+        <h2>Um jeito inteligente de controlar suas finanças.</h2>
+    </header>
+
+    <main>
+        <section id="situacao-financeira">
+            <div class="saldoTotal">
+                <h3>Saldo Total<i class="ti ti-pig-money"></i></h3>
+                <p id="total-saldo">R$ 00,00</p>
+            </div>
+
+            <div id="resumo-entrada-saida">
+                <div class="entradas">
+                    <h3>Entradas<i class="ti ti-square-rounded-arrow-up"></i></h3>
+                    <p id="total-entradas">R$ 00,00</p>
+                </div>
+                <div class="saidas">
+                    <h3>Saídas<i class="ti ti-square-rounded-arrow-down"></i></h3>
+                    <p id="total-saida">R$ 00,00</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="nova-transacao">
+            <h3>Nova transação</h3>
+
+            <form id="form-transacao">
+                <div class="campoTransacao">
+                    <label for="descricao">Descrição</label>
+                    <input type="text" id="descricao" name="nome_descricao" placeholder="Ex.: Salário, Mercado" required>
+                </div>
+                <div class="campoTransacao">
+                    <label for="valor">Valor (R$)</label>
+                    <input type="number" step="0.01" id="valor" name="valor" placeholder="00,00" required></div>
+                <div class="campoTransacao">
+                    <label for="tipo">Tipo</label>
+                    <select id="tipo" name="tipo_transacao" required>
+                        <option value="entrada">Receita</option>
+                        <option value="saida">Despesa</option>
+                    </select>
+                </div>
+                
+                <button type="reset" id="botao-limpar-valores"><i class="ti ti-trash"></i>Limpar</button>
+                <button type="submit" id="botao-adicionar-transacao"><i class="ti ti-plus"></i>Adicionar Transação</button>
+            </form>
+
+        </section>
+
+        <section id="extrato">
+            <h3>Extrato</h3>
+            <ul id="lista-transacoes">
+            </ul>
+        </section>
+    </main>
+</body>
+
+</html>

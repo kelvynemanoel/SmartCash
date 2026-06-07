@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* ------------ RESET ------------ */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+    outline: none;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+
+/* ------------ ESTILO ------------ */
+
+body {
+    background-color: #EAE9E4;
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 50px;
+}
+
+/* header */
+
+img{
+    width: 50px;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 300px;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+/* section situação financeira */
+
+section {
+    margin-top: 20px;
+}
+
+main {
+    flex: 1;
+    min-width: 0;
+}
+
+#situacao-financeira {
+    display: flex;
+    color: #272b29;
+    gap: 30px;
+}
+
+#situacao-financeira h3, .saldoTotal p, #resumo-entrada-saida p {
+    font-weight: 700;
+}
+
+#situacao-financeira h3, #resumo-entrada-saida p {
+    font-size: 1.3em;
+}
+
+
+.saldoTotal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #587767;
+    height: 160px;
+    border-radius: 20px;
+    padding: 25px 30px;
+    flex: 1;
+}
+
+.saldoTotal h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.saldoTotal p {
+    text-align: right;
+    font-size: 2.5em;
+}
+
+#resumo-entrada-saida {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+#resumo-entrada-saida div {
+    height: 75px;
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#resumo-entrada-saida i {
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.entradas {
+    background-color: rgba(88, 119, 103, 0.52);
+    color: #47584f;
+}
+
+.saidas {
+    background-color: #B71C1C;
+    color: #470808
+}
+
+/* section nova transação */
+
+#nova-transacao, #extrato {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 25px 30px;
+}
+
+#nova-transacao h3 {
+    padding-bottom: 20px;
+}
+
+#form-transacao {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.campoTransacao {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1 1 30%;
+    min-width: 200px;
+}
+
+.campoTransacao label {
+    font-size: 0.8em;
+    color: #9c9d9d;
+}
+
+.campoTransacao input {
+    padding: 8px;
+    border: solid 1px black;
+    border-radius: 5px;
+    background-color: #E9E9E9;
+}
+
+#form-transacao button {
+    border-radius: 10px;
+    padding: 8px 15px;
+    border: solid 2px #587767;
+}
+
+#form-transacao button i{
+    margin-right: 5px;
+    font-size: 1.2em;
+}
+
+#botao-limpar-valores {
+    color: #587767;
+}
+
+#botao-adicionar-transacao {
+    background-color: #587767;
+    color: #fff;
+}
+
+#botao-adicionar-transacao i {
+    color: #E9E9E9;
+}
+
+#tipo {
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #E9E9E9;
+}
+
+/* section extrato */
+
+#extrato {
+    height: 220px;
+}
