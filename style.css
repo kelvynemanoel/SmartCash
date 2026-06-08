@@ -49,19 +49,22 @@ body {
     margin: 20px auto;
     padding: 0 20px;
     display: flex;
-    gap: 50px;
+    gap: 80px;
 }
 
 /* header */
 
-img{
-    width: 50px;
-}
 
 header {
     display: flex;
     flex-direction: column;
-    flex: 0 0 300px;
+    flex: 0 0 380px;
+    height: 200px;
+    justify-content: flex-end;
+}
+
+img{
+    width: 50px;
 }
 
 h1 {
@@ -76,7 +79,7 @@ h2 {
 
 /* section situação financeira */
 
-section {
+#nova-transacao, #extrato {
     margin-top: 20px;
 }
 
@@ -99,7 +102,6 @@ main {
     font-size: 1.3em;
 }
 
-
 .saldoTotal {
     display: flex;
     flex-direction: column;
@@ -118,7 +120,6 @@ main {
 }
 
 .saldoTotal p {
-    text-align: right;
     font-size: 2.5em;
 }
 
@@ -227,4 +228,30 @@ main {
 
 #extrato {
     height: 220px;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1024px) {
+    body{
+        max-width: 1000px;
+        gap: 40px;
+    }
+
+    #situacao-financeira {
+        gap: 15px;
+    }
+
+    #resumo-entrada-saida h3, p {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 768px) {
+    
+}
+
+@media (max-width: 600px) {
+    
 }
