@@ -238,7 +238,7 @@ main {
 /* RESPONSIVIDADE */
 
 @media (max-width: 1300px) {
-    body {
+    .containerPrincipal {
         max-width: 1100px;
     }
 
@@ -262,7 +262,7 @@ main {
 }
 
 @media (max-width: 1200px) {
-    body{
+    .containerPrincipal {
         max-width: 1000px;
         gap: 40px;
     }
@@ -285,7 +285,7 @@ main {
 }
 
 @media (max-width: 926px) {
-    body {
+    .containerPrincipal {
         flex-direction: column;
     }
 
