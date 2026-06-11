@@ -44,12 +44,16 @@ button {
 body {
     background-color: #EAE9E4;
     font-family: "Poppins", sans-serif;
+}
+
+.containerPrincipal {
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
     width: 100%;
     max-width: 1400px;
     margin: 20px auto;
     padding: 0 20px;
-    display: flex;
-    gap: 80px;
 }
 
 /* header */
