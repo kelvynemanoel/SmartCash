@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -31,11 +31,11 @@
     
                 <div id="resumo-entrada-saida">
                     <div class="entradas">
-                        <h3><i class="ti ti-square-rounded-arrow-up"></i>Entradas</h3>
-                        <p id="total-entradas">R$ 00,00</p>
+                        <h3><i class="ti ti-square-rounded-arrow-up"></i>Receita</h3>
+                        <p id="total-entrada">R$ 00,00</p>
                     </div>
                     <div class="saidas">
-                        <h3><i class="ti ti-square-rounded-arrow-down"></i>Saídas</h3>
+                        <h3><i class="ti ti-square-rounded-arrow-down"></i>Despesa</h3>
                         <p id="total-saida">R$ 00,00</p>
                     </div>
                 </div>
@@ -47,11 +47,12 @@
                 <form id="form-transacao">
                     <div class="campoTransacao">
                         <label for="descricao">Descrição</label>
-                        <input type="text" id="descricao" name="nome_descricao" placeholder="Ex.: Salário, Mercado" required>
+                        <input type="text" id="descricao" name="descricao" placeholder="Ex.: Salário, Mercado" required>
                     </div>
                     <div class="campoTransacao">
                         <label for="valor">Valor (R$)</label>
-                        <input type="number" step="0.01" id="valor" name="valor" placeholder="00,00" required></div>
+                        <input type="number" step="0.01" id="valor" name="valor" placeholder="00,00" required>
+                    </div>
                     <div class="campoTransacao">
                         <label for="tipo">Tipo</label>
                         <select id="tipo" name="tipo_transacao" required>
