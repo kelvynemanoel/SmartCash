@@ -36,6 +36,7 @@ form.addEventListener('submit', (e) => {
 })
 
 function formatarMoeda(resultado) {
+    if (resultado === 0) { return 'R$ 00,00'; }
     return resultado.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
 }
 
