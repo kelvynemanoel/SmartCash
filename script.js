@@ -1,66 +1,99 @@
 const form = document.getElementById('form-transacao');
-const listaTransacoes = [];
+const htmlOriginalExtrato = document.querySelector('#lista-transacoes').innerHTML;
+const getChave = localStorage.getItem('listaDeTransacoes');
+const listaTransacoes = JSON.parse(getChave);
 
-function formatarMoeda(resultado) {
-    return resultado.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+function pegarTransacoes() {
+    return getChave ? listaTransacoes : [];
+}
+
+function criarTransacoes(lista) {
+    localStorage.setItem('listaDeTransacoes', JSON.stringify(lista));
+}
+
+const transacoesIniciais = pegarTransacoes();
+if (transacoesIniciais.length === 0) {
+    criarTransacoes([]);
+} else {
+    mostrarNaTela(transacoesIniciais);
+    alterarSituacaoFinanceira(transacoesIniciais);
 }
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-
     const novaTransacao = {
         descricao: form.elements['descricao'].value,
         valor: Number(form.elements['valor'].value),
         tipoTransacao: form.elements['tipo_transacao'].value
     }
-
+    
     listaTransacoes.push(novaTransacao);
     form.reset();
+    
+    mostrarNaTela(listaTransacoes);
+    alterarSituacaoFinanceira(listaTransacoes);
+    return localStorage.setItem('listaDeTransacoes', JSON.stringify(listaTransacoes));
+})
 
+function formatarMoeda(resultado) {
+    return resultado.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+}
+
+function alterarSituacaoFinanceira(lista) {
     const paragrafoReceita = document.querySelector('#total-entrada');
     const paragrafoDespesa = document.querySelector('#total-saida');
     const paragrafoSaldoTotal = document.querySelector('#total-saldo');
-    
 
-    mostrarNaTela(listaTransacoes);
-    paragrafoReceita.innerHTML = formatarMoeda(alterarReceita(listaTransacoes));
-    paragrafoDespesa.innerHTML = formatarMoeda(alterarDespesa(listaTransacoes));
-    paragrafoSaldoTotal.innerHTML = formatarMoeda(alterarSaldoTotal(listaTransacoes));
-})
+    paragrafoReceita.innerHTML = formatarMoeda(alterarValor(lista, 'entrada'));
+    paragrafoDespesa.innerHTML = formatarMoeda(alterarValor(lista, 'saida'));
+    paragrafoSaldoTotal.innerHTML = formatarMoeda(alterarSaldoTotal(lista));
+}
 
-function mostrarNaTela(elemento) {
+function mostrarNaTela(lista) {
     const extrato = document.querySelector('#lista-transacoes');
+    if (lista.length === 0) {
+        extrato.innerHTML = htmlOriginalExtrato;
+        alterarAlturaExtrato(lista);
+        return; //Early Return
+    }
 
-    const itemLista = elemento.map(transacao => {
-        let resultado;
-        if (transacao.tipoTransacao === 'entrada') {
-            resultado = `<li class="extrato-entrada"><p>${transacao.descricao}</p> <p>${formatarMoeda(transacao.valor)}</p> <i class="ti ti-trash"></i></li>`;
-        } else {
-            resultado = `<li class="extrato-saida"><p>${transacao.descricao}</p> <p>${formatarMoeda(transacao.valor)}</p> <i class="ti ti-trash"></i></li>`;
-        }
-        return resultado;
+    const itemLista = lista.map((transacao, index) => {
+        const classe = transacao.tipoTransacao === 'entrada' ? 'class="extrato-entrada"' : 'class="extrato-saida"';
+
+        return `<li ${classe}><p>${transacao.descricao}</p> <p>${formatarMoeda(transacao.valor)}</p> <i class="ti ti-trash" data-index="${index}"></i></li>`;
     });
 
-    const mostrarNaTela = itemLista.join('');
-    return extrato.innerHTML = mostrarNaTela;
+    alterarAlturaExtrato(lista);
+    const juncaoFinal = itemLista.join('');
+    return extrato.innerHTML = juncaoFinal;
 }
 
-function alterarReceita(transacao){
-    const totalReceita = transacao.filter(entradas => entradas.tipoTransacao == 'entrada');
-    const somaReceita = totalReceita.reduce((acumulador, valorObjeto) => acumulador + valorObjeto.valor, 0);
-    return somaReceita;
+function alterarValor(transacao, tipo){
+    return transacao.filter(t => t.tipoTransacao === tipo).reduce((acumulador, t) => acumulador + t.valor, 0);
 }
 
-function alterarDespesa(transacao){
-    const totalDespesa = transacao.filter(saidas => saidas.tipoTransacao == 'saida');
-    const somaDespesa = totalDespesa.reduce((acumulador, valorObjeto) => acumulador + valorObjeto.valor, 0);
-    return somaDespesa;
+function alterarSaldoTotal(listaValores, tipo){
+    return alterarValor(listaValores, 'entrada') - alterarValor(listaValores, 'saida');
 }
 
-function alterarValores(transacao){
-    //ideia -> juntar em uma única função os duas funções alterar()
-}
+const listaExtratoLixeira = document.querySelector('#lista-transacoes');
+listaExtratoLixeira.addEventListener('click', (e) => {
+    if (e.target.classList.contains('ti-trash')) {
+        const index = e.target.getAttribute('data-index');
+        listaTransacoes.splice(index, 1);
+        mostrarNaTela(listaTransacoes);
+        alterarSituacaoFinanceira(listaTransacoes);
 
-function alterarSaldoTotal(somaTransacoes){
-    return alterarReceita(somaTransacoes) - alterarDespesa(somaTransacoes);
+        localStorage.setItem('listaDeTransacoes', JSON.stringify(listaTransacoes));
+    }
+})
+
+function alterarAlturaExtrato(lista) {
+    if (lista.length >= 3) {
+        extrato.style.height = 'fit-content'; 
+    } if ((lista.length === 2)) {
+        extrato.style.height = '220px';
+    } else {
+        '';
+    }
 }

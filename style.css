@@ -49,6 +49,7 @@ button {
     --cor-despesa-texto: #470808;
     --cor-neutra: #272b29;
     --cor-input: #E9E9E9;
+    --cor-input-texto: #9c9d9d;
     --cor-extrato-receita: rgba(88, 119, 103, 0.9);
     --cor-extrato-receita-texto: rgba(88, 119, 103, 0.2);
     --cor-extrato-despesa: rgba(183, 28, 28, 0.9);
@@ -206,7 +207,7 @@ main {
 
 .campoTransacao label {
     font-size: 0.8em;
-    color: #9c9d9d;
+    color: var(--cor-input-texto);
 }
 
 .campoTransacao input {
@@ -271,7 +272,7 @@ main {
 /* section extrato */
 
 #extrato {
-    /* height: 220px; */
+    height: 220px;
 }
 
 #extrato h3 {
@@ -287,6 +288,10 @@ main {
     align-items: center;
     justify-content: space-between;
     font-weight: 500;
+}
+
+#extrato li {
+    color: var(--cor-input-texto);
 }
 
 #extrato .extrato-entrada {
@@ -320,11 +325,12 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    cursor: pointer;
 }
 
 #extrato i:hover {
     color: var(--cor-neutra);
-    background-color: var(--cor-extrato-receita-texto);
+    background-color: rgba(39, 43, 41, 0.2);
     border: solid 2px var(--cor-neutra);
 }
 
