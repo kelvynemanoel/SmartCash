@@ -59,14 +59,15 @@ function mostrarNaTela(lista) {
     }
 
     const itemLista = lista.map((transacao, index) => {
+        const id = transacao.descricao.length > 34 ?  'id="passouTamanho"' : '';
+
         const classe = transacao.tipoTransacao === 'entrada' ? 'class="extrato-entrada"' : 'class="extrato-saida"';
 
-        return `<li ${classe}><p>${transacao.descricao}</p> <p>${formatarMoeda(transacao.valor)}</p> <i class="ti ti-trash" data-index="${index}"></i></li>`;
+        return `<li ${classe} ${id}><p>${transacao.descricao}</p> <div><p>${formatarMoeda(transacao.valor)}</p> <i class="ti ti-trash" data-index="${index}"></i></div></li>`;
     });
 
     alterarAlturaExtrato(lista);
-    const juncaoFinal = itemLista.join('');
-    return extrato.innerHTML = juncaoFinal;
+    extrato.innerHTML = itemLista.join('');
 }
 
 function alterarValor(transacao, tipo){
@@ -77,8 +78,8 @@ function alterarSaldoTotal(listaValores, tipo){
     return alterarValor(listaValores, 'entrada') - alterarValor(listaValores, 'saida');
 }
 
-const listaExtratoLixeira = document.querySelector('#lista-transacoes');
-listaExtratoLixeira.addEventListener('click', (e) => {
+const listaExtrato = document.querySelector('#lista-transacoes');
+listaExtrato.addEventListener('click', (e) => {
     if (e.target.classList.contains('ti-trash')) {
         const index = e.target.getAttribute('data-index');
         listaTransacoes.splice(index, 1);
@@ -93,8 +94,14 @@ function alterarAlturaExtrato(lista) {
     if (lista.length >= 3) {
         extrato.style.height = 'fit-content'; 
     } if ((lista.length === 2)) {
-        extrato.style.height = '220px';
+        const caminhoExtrato = document.querySelector('#lista-transacoes');
+        if (caminhoExtrato.querySelector('#passouTamanho')){
+            extrato.style.height = 'fit-content'; 
+        } else {
+            extrato.style.height = '220px';
+        }
     } else {
+        extrato.style.height = '220px';
         '';
     }
 }
