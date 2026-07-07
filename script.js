@@ -1,23 +1,33 @@
-const form = document.getElementById('form-transacao');
 const htmlOriginalExtrato = document.querySelector('#lista-transacoes').innerHTML;
-const getChave = localStorage.getItem('listaDeTransacoes');
-const listaTransacoes = JSON.parse(getChave);
+const form = document.getElementById('form-transacao');
+let getChave = localStorage.getItem('listaDeTransacoes'); //talves um bug no primeiro acesso
+let listaTransacoes = JSON.parse(getChave);
 
-function pegarTransacoes() {
-    return getChave ? listaTransacoes : [];
-}
-
-function criarTransacoes(lista) {
-    localStorage.setItem('listaDeTransacoes', JSON.stringify(lista));
-}
-
-const transacoesIniciais = pegarTransacoes();
-if (transacoesIniciais.length === 0) {
-    criarTransacoes([]);
+if (getChave === null) {
+    localStorage.setItem('listaDeTransacoes', JSON.stringify([]));
 } else {
-    mostrarNaTela(transacoesIniciais);
-    alterarSituacaoFinanceira(transacoesIniciais);
+    listaTransacoes = JSON.parse(getChave);
+    mostrarNaTela(listaTransacoes);
+    alterarSituacaoFinanceira(listaTransacoes);
 }
+
+// function pegarTransacoes() {
+//     return getChave ? listaTransacoes : [];
+// }
+
+// function criarTransacoes(lista) {
+//     localStorage.setItem('listaDeTransacoes', JSON.stringify(lista));
+//     getChave = localStorage.getItem('listaDeTransacoes');
+//     listaTransacoes = JSON.parse(getChave);
+// }
+
+// const transacoesIniciais = pegarTransacoes();
+// if (transacoesIniciais.length === 0) {
+//     criarTransacoes([]);
+// } else {
+//     mostrarNaTela(transacoesIniciais);
+//     alterarSituacaoFinanceira(transacoesIniciais);
+// }
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -32,7 +42,7 @@ form.addEventListener('submit', (e) => {
     
     mostrarNaTela(listaTransacoes);
     alterarSituacaoFinanceira(listaTransacoes);
-    return localStorage.setItem('listaDeTransacoes', JSON.stringify(listaTransacoes));
+    localStorage.setItem('listaDeTransacoes', JSON.stringify(listaTransacoes));
 })
 
 function formatarMoeda(resultado) {
@@ -54,19 +64,14 @@ function mostrarNaTela(lista) {
     const extrato = document.querySelector('#lista-transacoes');
     if (lista.length === 0) {
         extrato.innerHTML = htmlOriginalExtrato;
-        alterarAlturaExtrato(lista);
         return; //Early Return
     }
 
     const itemLista = lista.map((transacao, index) => {
-        const id = transacao.descricao.length > 34 ?  'id="passouTamanho"' : '';
+        const classeTipo = transacao.tipoTransacao === 'entrada' ? 'entrada' : 'saida';
 
-        const classe = transacao.tipoTransacao === 'entrada' ? 'class="extrato-entrada"' : 'class="extrato-saida"';
-
-        return `<li ${classe} ${id}><p>${transacao.descricao}</p> <div><p>${formatarMoeda(transacao.valor)}</p> <i class="ti ti-trash" data-index="${index}"></i></div></li>`;
+        return `<li class="extrato-${classeTipo}"><p>${transacao.descricao}</p> <div><p>${formatarMoeda(transacao.valor)}</p> <i class="ti ti-trash" data-index="${index}"></i></div></li>`;
     });
-
-    alterarAlturaExtrato(lista);
     extrato.innerHTML = itemLista.join('');
 }
 
@@ -74,7 +79,7 @@ function alterarValor(transacao, tipo){
     return transacao.filter(t => t.tipoTransacao === tipo).reduce((acumulador, t) => acumulador + t.valor, 0);
 }
 
-function alterarSaldoTotal(listaValores, tipo){
+function alterarSaldoTotal(listaValores){
     return alterarValor(listaValores, 'entrada') - alterarValor(listaValores, 'saida');
 }
 
@@ -89,25 +94,3 @@ listaExtrato.addEventListener('click', (e) => {
         localStorage.setItem('listaDeTransacoes', JSON.stringify(listaTransacoes));
     }
 })
-
-function alterarAlturaExtrato(lista) {
-    const alturaFixa = '220px';
-    const alturaAuto = 'fit-content';
-
-    if (lista.length >= 3) {
-        extrato.style.height = alturaAuto;
-        return;
-    } 
-    
-    if ((lista.length === 2)) {
-        const caminhoExtrato = document.querySelector('#lista-transacoes');
-        if (caminhoExtrato.querySelector('#passouTamanho')){
-            extrato.style.height = alturaAuto; 
-        } else {
-            extrato.style.height = alturaFixa;
-        }
-    } else {
-        extrato.style.height = alturaFixa;
-        '';
-    }
-}
