@@ -91,17 +91,23 @@ listaExtrato.addEventListener('click', (e) => {
 })
 
 function alterarAlturaExtrato(lista) {
+    const alturaFixa = '220px';
+    const alturaAuto = 'fit-content';
+
     if (lista.length >= 3) {
-        extrato.style.height = 'fit-content'; 
-    } if ((lista.length === 2)) {
+        extrato.style.height = alturaAuto;
+        return;
+    } 
+    
+    if ((lista.length === 2)) {
         const caminhoExtrato = document.querySelector('#lista-transacoes');
         if (caminhoExtrato.querySelector('#passouTamanho')){
-            extrato.style.height = 'fit-content'; 
+            extrato.style.height = alturaAuto; 
         } else {
-            extrato.style.height = '220px';
+            extrato.style.height = alturaFixa;
         }
     } else {
-        extrato.style.height = '220px';
+        extrato.style.height = alturaFixa;
         '';
     }
 }
