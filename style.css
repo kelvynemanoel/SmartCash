@@ -227,10 +227,6 @@ main {
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#form-transacao button:hover {
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
 #form-transacao button i{
     margin-right: 5px;
     margin-bottom: 2px;

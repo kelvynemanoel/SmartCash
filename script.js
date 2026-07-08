@@ -1,33 +1,10 @@
 const htmlOriginalExtrato = document.querySelector('#lista-transacoes').innerHTML;
 const form = document.getElementById('form-transacao');
-let getChave = localStorage.getItem('listaDeTransacoes'); //talves um bug no primeiro acesso
-let listaTransacoes = JSON.parse(getChave);
+let getChave = localStorage.getItem('minhasTransacoes');
+let listaTransacoes = JSON.parse(getChave) || [];
 
-if (getChave === null) {
-    localStorage.setItem('listaDeTransacoes', JSON.stringify([]));
-} else {
-    listaTransacoes = JSON.parse(getChave);
-    mostrarNaTela(listaTransacoes);
-    alterarSituacaoFinanceira(listaTransacoes);
-}
-
-// function pegarTransacoes() {
-//     return getChave ? listaTransacoes : [];
-// }
-
-// function criarTransacoes(lista) {
-//     localStorage.setItem('listaDeTransacoes', JSON.stringify(lista));
-//     getChave = localStorage.getItem('listaDeTransacoes');
-//     listaTransacoes = JSON.parse(getChave);
-// }
-
-// const transacoesIniciais = pegarTransacoes();
-// if (transacoesIniciais.length === 0) {
-//     criarTransacoes([]);
-// } else {
-//     mostrarNaTela(transacoesIniciais);
-//     alterarSituacaoFinanceira(transacoesIniciais);
-// }
+mostrarNaTela(listaTransacoes);
+alterarSituacaoFinanceira(listaTransacoes);
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -42,7 +19,7 @@ form.addEventListener('submit', (e) => {
     
     mostrarNaTela(listaTransacoes);
     alterarSituacaoFinanceira(listaTransacoes);
-    localStorage.setItem('listaDeTransacoes', JSON.stringify(listaTransacoes));
+    localStorage.setItem('minhasTransacoes', JSON.stringify(listaTransacoes));
 })
 
 function formatarMoeda(resultado) {
@@ -91,6 +68,6 @@ listaExtrato.addEventListener('click', (e) => {
         mostrarNaTela(listaTransacoes);
         alterarSituacaoFinanceira(listaTransacoes);
 
-        localStorage.setItem('listaDeTransacoes', JSON.stringify(listaTransacoes));
+        localStorage.setItem('minhasTransacoes', JSON.stringify(listaTransacoes));
     }
 })
