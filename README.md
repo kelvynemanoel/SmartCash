@@ -6,7 +6,7 @@ O **SmartCash** é uma aplicação web de controle financeiro desenvolvida para 
 
 O projeto está hospedado no link: https://kelvynemanoel.github.io/SmartCash/ 
 
-<img width="754.4" height="348" alt="image" aling="center" src="https://github.com/user-attachments/assets/9b39cad0-577a-4066-b5e5-1a80a922dd5b" /><img width="196.99" height="348" alt="image" aling="center" src="https://github.com/user-attachments/assets/e657a4dc-40e8-4b86-9be4-bcd6326cc597" />
+<img width="754.4" height="348" alt="image" aling="center" src="https://github.com/user-attachments/assets/9b39cad0-577a-4066-b5e5-1a80a922dd5b"/>  <img width="196.99" height="348" alt="image" aling="center" src="https://github.com/user-attachments/assets/e657a4dc-40e8-4b86-9be4-bcd6326cc597"/>
 
 ---
 
