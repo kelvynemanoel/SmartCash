@@ -56,8 +56,8 @@ function alterarValor(transacao, tipo){
     return transacao.filter(t => t.tipoTransacao === tipo).reduce((acumulador, t) => acumulador + t.valor, 0);
 }
 
-function alterarSaldoTotal(listaValores){
-    return alterarValor(listaValores, 'entrada') - alterarValor(listaValores, 'saida');
+function alterarSaldoTotal(lista){
+    return alterarValor(lista, 'entrada') - alterarValor(lista, 'saida');
 }
 
 const listaExtrato = document.querySelector('#lista-transacoes');
