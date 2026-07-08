@@ -5,7 +5,8 @@
 O **SmartCash** é uma aplicação web de controle financeiro desenvolvida para ajudar os usuários a gerenciar suas receitas e despesas de forma intuitiva. Com uma interface limpa e responsiva, o sistema calcula automaticamente o saldo total com base nas transações inseridas e salva os dados localmente no navegador, garantindo que as informações não sejam perdidas ao recarregar a página. Esse projeto faz parte da entrega da segunda fase do programa Trends IT 2026.
 
 O projeto está hospedado no link: https://kelvynemanoel.github.io/SmartCash/ 
-<img width="1886" height="870" alt="image" src="https://github.com/user-attachments/assets/9b39cad0-577a-4066-b5e5-1a80a922dd5b" /><img width="437" height="772" alt="image" src="https://github.com/user-attachments/assets/e657a4dc-40e8-4b86-9be4-bcd6326cc597" />
+
+<img width="1508.8" height="696" alt="image" src="https://github.com/user-attachments/assets/9b39cad0-577a-4066-b5e5-1a80a922dd5b" /><img width="349.6" height="617.6" alt="image" src="https://github.com/user-attachments/assets/e657a4dc-40e8-4b86-9be4-bcd6326cc597" />
 
 ---
 
